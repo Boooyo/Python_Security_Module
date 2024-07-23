@@ -40,12 +40,6 @@ optional arguments:
 Usage: python3 py3_synflood_cmd.py -t 10.20.30.40 -p 8080 -c 1
 ```
 
-![alt tag](https://emreovunc.com/projects/python_synflood_attack_cmd.png)
-
-![alt tag](https://emreovunc.com/projects/Syn_Flood_01.png)
-
-![alt tag](https://emreovunc.com/projects/Syn_Flood_02.png)
-
 # Update(2024/07/23)
 Add IPv6 support, you can use command like following
 ```
