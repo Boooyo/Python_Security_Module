@@ -10,13 +10,6 @@ apt install python-scapy
 apt install python3-scapy
 ```
 
-## Installation
-
-```
-git clone https://github.com/EmreOvunc/Python-SYN-Flood-Attack-Tool.git
-cd Python-SYN-Flood-Attack-Tool
-```
-
 ## Usage
 
 ```
