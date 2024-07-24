@@ -5,7 +5,7 @@ import subprocess
 import time
 from art import *
 from colorama import Fore, Style
- 
+  
 def check_dependencies():
     try:
         import art
